@@ -1,6 +1,7 @@
 package com.example.jetpackcompose_unitconverter_mvvm
 
 import androidx.lifecycle.ViewModel
+import com.example.jetpackcompose_unitconverter_mvvm.data.Conversion
 
 class ConverterViewModel: ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.example.jetpackcompose_unitconverter_mvvm
+package com.example.jetpackcompose_unitconverter_mvvm.data
 
 data class Conversion(
     val id: Int,

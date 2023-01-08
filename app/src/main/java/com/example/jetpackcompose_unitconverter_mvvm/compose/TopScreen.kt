@@ -1,9 +1,10 @@
-package com.example.jetpackcompose_unitconverter_mvvm
+package com.example.jetpackcompose_unitconverter_mvvm.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.example.jetpackcompose_unitconverter_mvvm.data.Conversion
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
