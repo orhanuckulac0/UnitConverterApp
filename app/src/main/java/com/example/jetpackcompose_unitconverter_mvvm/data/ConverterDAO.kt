@@ -19,5 +19,4 @@ interface ConverterDAO {
 
     @Query("SELECT * FROM result_table")
     fun getAllResults(): Flow<List<ConversionResult>>
-
 }

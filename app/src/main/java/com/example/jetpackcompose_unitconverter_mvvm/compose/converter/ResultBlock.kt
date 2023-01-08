@@ -1,4 +1,4 @@
-package com.example.jetpackcompose_unitconverter_mvvm.compose
+package com.example.jetpackcompose_unitconverter_mvvm.compose.converter
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
