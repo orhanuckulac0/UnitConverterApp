@@ -3,6 +3,7 @@ package com.example.jetpackcompose_unitconverter_mvvm.compose.history
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -25,7 +26,7 @@ fun HistoryItem(
 ){
     Row(modifier = modifier
         .fillMaxWidth()
-        .border(border = BorderStroke(0.5.dp, Color.DarkGray)),
+        .border(border = BorderStroke(0.5.dp, Color.DarkGray), shape= RoundedCornerShape(4.dp)),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
