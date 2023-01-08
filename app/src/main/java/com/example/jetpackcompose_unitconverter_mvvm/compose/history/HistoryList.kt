@@ -18,7 +18,11 @@ fun HistoryList(
             items = list.value,
             key = { item-> item.id}
         ){ item->
-            HistoryItem(typedValueMessage = item.typedValueMessage, resultMessage = item.resultMessage, onClose = { onCloseTask(item) })
+            HistoryItem(
+                typedValueMessage = item.typedValueMessage,
+                resultMessage = item.resultMessage,
+                onClose = { onCloseTask(item) }
+            )
         }
     }
 }

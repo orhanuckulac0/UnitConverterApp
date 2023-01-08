@@ -28,4 +28,16 @@ class ConverterViewModel(private val converterRepository: ConverterRepository): 
             )
         }
     }
+
+    fun deleteResult(item: ConversionResult){
+        viewModelScope.launch(Dispatchers.IO) {
+            converterRepository.deleteResult(item)
+        }
+    }
+
+    fun deleteAllResults(){
+        viewModelScope.launch(Dispatchers.IO) {
+            converterRepository.deleteAllResults()
+        }
+    }
 }

@@ -33,6 +33,10 @@ fun BaseScreen(
             converterViewModel.addResult(typedValueMessage, resultMessage) // save to db
         }
         Spacer(modifier = modifier.height(20.dp))
-        HistoryScreen(historyList)
+        HistoryScreen(
+            historyList,
+            { item-> converterViewModel.deleteResult(item) },
+            { converterViewModel.deleteAllResults() }
+        )
     }
 }
