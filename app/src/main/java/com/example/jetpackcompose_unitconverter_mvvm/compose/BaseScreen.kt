@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jetpackcompose_unitconverter_mvvm.ConverterViewModel
+import com.example.jetpackcompose_unitconverter_mvvm.ConverterViewModelFactory
 
 //Note: Due to their lifecycle and scoping, you should access and call ViewModel instances at screen-level composables,
 // that is, close to a root composable called from an activity, fragment, or destination of a Navigation graph.
@@ -18,11 +19,14 @@ import com.example.jetpackcompose_unitconverter_mvvm.ConverterViewModel
 @Composable
 fun BaseScreen(
     modifier: Modifier = Modifier,
-    converterViewModel: ConverterViewModel = viewModel()
+    factory: ConverterViewModelFactory,
+    converterViewModel: ConverterViewModel = viewModel(factory = factory)
 ){
     val list = converterViewModel.getConversions()
     Column(modifier = modifier.padding(30.dp)) {
-        TopScreen(list)
+        TopScreen(list){ typedValueMessage, resultMessage ->
+            converterViewModel.addResult(typedValueMessage, resultMessage) // save to db
+        }
         Spacer(modifier = modifier.height(20.dp))
         HistoryScreen()
     }

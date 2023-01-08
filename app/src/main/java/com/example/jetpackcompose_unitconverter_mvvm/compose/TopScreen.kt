@@ -9,7 +9,10 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 
 @Composable
-fun TopScreen(list: List<Conversion>) {
+fun TopScreen(
+    list: List<Conversion>,
+    save: (String, String) -> Unit
+) {
 
     val selectedConversion : MutableState<Conversion?> = remember { mutableStateOf(null) }
     val inputText : MutableState<String> = remember { mutableStateOf("") }
@@ -17,6 +20,7 @@ fun TopScreen(list: List<Conversion>) {
 
     ConversionMenu(list = list){
         selectedConversion.value = it
+        typedValue.value = "0.0"
     }
 
     selectedConversion.value?.let {
@@ -36,6 +40,7 @@ fun TopScreen(list: List<Conversion>) {
 
         val typedValueMessage = "${typedValue.value} ${selectedConversion.value!!.convertFrom} is equal to"
         val resultMessage = "$roundedResult ${selectedConversion.value!!.convertTo}"
+        save(typedValueMessage, resultMessage)
         ResultBlock(typedValueMessage = typedValueMessage, resultMessage = resultMessage)
     }
 }

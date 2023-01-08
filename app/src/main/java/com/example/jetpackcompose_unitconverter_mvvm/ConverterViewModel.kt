@@ -1,9 +1,14 @@
 package com.example.jetpackcompose_unitconverter_mvvm
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.jetpackcompose_unitconverter_mvvm.data.Conversion
+import com.example.jetpackcompose_unitconverter_mvvm.data.ConversionResult
+import com.example.jetpackcompose_unitconverter_mvvm.data.ConverterRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class ConverterViewModel: ViewModel() {
+class ConverterViewModel(private val converterRepository: ConverterRepository): ViewModel() {
 
     fun getConversions() = listOf(
         Conversion(id = 1, description = "Pounds to Kilograms", convertFrom = "lbs", convertTo = "kg", multiplyBy = 0.453592),
@@ -13,4 +18,12 @@ class ConverterViewModel: ViewModel() {
         Conversion(id = 5, description = "Miles to Kilometers", convertFrom = "mi", convertTo = "km", multiplyBy = 1.60934),
         Conversion(id = 6, description = "Kilometers to Miles", convertFrom = "km", convertTo = "mi", multiplyBy = 0.621371)
     )
+
+    fun addResult(typedValueMessage: String, resultMessage: String){
+        viewModelScope.launch(Dispatchers.IO) {
+            converterRepository.insertResult(
+                ConversionResult(0, typedValueMessage, resultMessage)
+            )
+        }
+    }
 }
