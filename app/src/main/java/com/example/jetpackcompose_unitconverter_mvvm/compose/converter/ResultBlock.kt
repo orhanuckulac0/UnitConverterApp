@@ -41,7 +41,7 @@ fun ResultBlock(
                 Text(
                     text = resultMessage,
                     fontSize = 24.sp,
-                    color = Color.DarkGray,
+                    color = MaterialTheme.colors.primary,
                     fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.Center
                 )

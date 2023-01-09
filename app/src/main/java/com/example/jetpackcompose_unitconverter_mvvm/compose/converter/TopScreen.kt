@@ -9,6 +9,7 @@ import com.example.jetpackcompose_unitconverter_mvvm.data.Conversion
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
+
 @Composable
 fun TopScreen(
     list: List<Conversion>,
@@ -16,7 +17,7 @@ fun TopScreen(
     selectedConversion: MutableState<Conversion?>,
     inputText: MutableState<String>,
     typedValue: MutableState<String>,
-    isLandscape: Boolean
+    isLandscape: Boolean,
 ) {
 
     var toSave by remember {

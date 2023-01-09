@@ -29,7 +29,7 @@ fun InputBlock(
     isLandscape: Boolean
 ){
     if (isLandscape){
-        Column(modifier = modifier.padding(0.dp, 20.dp, 0.dp, 0.dp)) {
+        Column(modifier = modifier.padding(0.dp, 0.dp, 0.dp, 0.dp)) {
             Row {
                 TextField(
                     value = inputText.value,
