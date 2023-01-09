@@ -1,6 +1,6 @@
 UnitConverterApp
 
-In this project, I have used Jetpack Compose, Hilt for dependency injection, Room DB for local storage and MVVM Architecture Pattern.
+In this project, I have used Jetpack Compose, Hilt for dependency injection, Room DB for local storage and followed MVVM Architecture Pattern.
 
 ![main img](https://user-images.githubusercontent.com/101017069/211232728-0630f7ef-9758-475f-8dec-bf2511d79b2e.PNG)
 
