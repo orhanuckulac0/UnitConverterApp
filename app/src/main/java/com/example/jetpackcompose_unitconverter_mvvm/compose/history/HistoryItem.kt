@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -30,7 +31,7 @@ fun HistoryItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Column() {
+        Column {
             Text(modifier = modifier.padding(5.dp),
                 text = typedValueMessage,
                 fontSize = 18.sp
@@ -39,7 +40,7 @@ fun HistoryItem(
                 text = resultMessage,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
-                color = Color.Blue
+                color = MaterialTheme.colors.primary
             )
         }
         IconButton(onClick = { onClose() }) {

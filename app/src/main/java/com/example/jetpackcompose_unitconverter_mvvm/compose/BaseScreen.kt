@@ -1,12 +1,10 @@
 package com.example.jetpackcompose_unitconverter_mvvm.compose
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import android.content.res.Configuration
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jetpackcompose_unitconverter_mvvm.ConverterViewModel
@@ -28,20 +26,55 @@ fun BaseScreen(
     val list = converterViewModel.getConversions()
     val historyList = converterViewModel.resultList.collectAsState(initial = emptyList())  // convert flow into state
 
-    Column(modifier = modifier.padding(30.dp)) {
-        TopScreen(
-            list,
-            selectedConversion = converterViewModel.selectedConversion,
-            inputText = converterViewModel.inputText,
-            typedValue = converterViewModel.typedValue,
-            save = { typedValueMessage, resultMessage ->
-                converterViewModel.addResult(typedValueMessage, resultMessage) // save to db
-            })
-        Spacer(modifier = modifier.height(20.dp))
-        HistoryScreen(
-            historyList,
-            { item-> converterViewModel.deleteResult(item) },
-            { converterViewModel.deleteAllResults() }
-        )
+    val configuration = LocalConfiguration.current
+    var isLandscape by remember { mutableStateOf(false) }
+
+    when(configuration.orientation){
+        Configuration.ORIENTATION_LANDSCAPE ->{
+            isLandscape = true
+            Row(modifier = modifier
+                .padding(30.dp)
+                .fillMaxSize(),
+            horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                TopScreen(
+                    list,
+                    selectedConversion = converterViewModel.selectedConversion,
+                    inputText = converterViewModel.inputText,
+                    typedValue = converterViewModel.typedValue,
+                    save = { typedValueMessage, resultMessage ->
+                        converterViewModel.addResult(typedValueMessage, resultMessage) // save to db
+                    },
+                    isLandscape = isLandscape
+                )
+                Spacer(modifier = modifier.width(10.dp))
+                HistoryScreen(
+                    historyList,
+                    { item-> converterViewModel.deleteResult(item) },
+                    { converterViewModel.deleteAllResults() }
+                )
+            }
+        }
+        else ->{
+            isLandscape= false
+            Column(modifier = modifier.padding(30.dp)) {
+                TopScreen(
+                    list,
+                    selectedConversion = converterViewModel.selectedConversion,
+                    inputText = converterViewModel.inputText,
+                    typedValue = converterViewModel.typedValue,
+                    save = { typedValueMessage, resultMessage ->
+                        converterViewModel.addResult(typedValueMessage, resultMessage) // save to db
+                    },
+                    isLandscape = isLandscape
+                )
+                Spacer(modifier = modifier.height(20.dp))
+                HistoryScreen(
+                    historyList,
+                    { item-> converterViewModel.deleteResult(item) },
+                    { converterViewModel.deleteAllResults() }
+                )
+            }
+        }
     }
 }

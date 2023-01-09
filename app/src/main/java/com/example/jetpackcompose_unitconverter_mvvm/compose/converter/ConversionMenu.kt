@@ -24,6 +24,7 @@ import com.example.jetpackcompose_unitconverter_mvvm.data.Conversion
 @Composable
 fun ConversionMenu(
     list: List<Conversion>,
+    isLandscape: Boolean,
     modifier: Modifier = Modifier,
     convert: (Conversion)-> Unit
 ){
@@ -42,34 +43,63 @@ fun ConversionMenu(
     }
 
     Column {
-        OutlinedTextField(
-            value = displayText,
-            onValueChange = { displayText = it },
-            textStyle = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
-            modifier = modifier
-                .fillMaxWidth()
-                .onGloballyPositioned { coordinates ->
-                    textFieldSize = coordinates.size.toSize()
-                }
-                .clickable { expanded = !expanded }
-            ,
-            label = { Text(text = "Conversion type")},
-            trailingIcon = {
-                Icon(
-                    icon, contentDescription = "icon",
-                    modifier.clickable { expanded = !expanded }
-                )},
-            readOnly = true,
-            // disable textfield to make it clickable
-            enabled = false,
-            // apply enabled OutlinedTextField default colors
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                disabledTextColor = LocalContentColor.current.copy(LocalContentAlpha.current),
-                backgroundColor = Color.Transparent,
-                disabledBorderColor = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled),
-                disabledLabelColor = MaterialTheme.colors.onSurface.copy(ContentAlpha.medium),
+        if (isLandscape){
+            OutlinedTextField(
+                value = displayText,
+                onValueChange = { displayText = it },
+                textStyle = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
+                modifier = modifier
+                    .onGloballyPositioned { coordinates ->
+                        textFieldSize = coordinates.size.toSize()
+                    }
+                    .clickable { expanded = !expanded }
+                ,
+                label = { Text(text = "Conversion type")},
+                trailingIcon = {
+                    Icon(
+                        icon, contentDescription = "icon",
+                        modifier.clickable { expanded = !expanded }
+                    )},
+                readOnly = true,
+                // disable textfield to make it clickable
+                enabled = false,
+                // apply enabled OutlinedTextField default colors
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    disabledTextColor = LocalContentColor.current.copy(LocalContentAlpha.current),
+                    backgroundColor = Color.Transparent,
+                    disabledBorderColor = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled),
+                    disabledLabelColor = MaterialTheme.colors.onSurface.copy(ContentAlpha.medium),
+                )
             )
-        )
+        }else {
+            OutlinedTextField(
+                value = displayText,
+                onValueChange = { displayText = it },
+                textStyle = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
+                modifier = modifier
+                    .onGloballyPositioned { coordinates ->
+                        textFieldSize = coordinates.size.toSize()
+                    }
+                    .clickable { expanded = !expanded }
+                ,
+                label = { Text(text = "Conversion type")},
+                trailingIcon = {
+                    Icon(
+                        icon, contentDescription = "icon",
+                        modifier.clickable { expanded = !expanded }
+                    )},
+                readOnly = true,
+                // disable textfield to make it clickable
+                enabled = false,
+                // apply enabled OutlinedTextField default colors
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    disabledTextColor = LocalContentColor.current.copy(LocalContentAlpha.current),
+                    backgroundColor = Color.Transparent,
+                    disabledBorderColor = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled),
+                    disabledLabelColor = MaterialTheme.colors.onSurface.copy(ContentAlpha.medium),
+                )
+            )
+        }
 
         DropdownMenu(
             expanded = expanded,
