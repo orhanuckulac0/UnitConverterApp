@@ -9,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -26,7 +27,7 @@ fun ConversionMenu(
     modifier: Modifier = Modifier,
     convert: (Conversion)-> Unit
 ){
-    var displayText by remember { mutableStateOf("Select the conversion type") }
+    var displayText by rememberSaveable { mutableStateOf("Select the conversion type") }
 
     // to assign the dropdown menu the same width as TextField
     var textFieldSize by remember { mutableStateOf(Size.Zero) }
@@ -49,7 +50,8 @@ fun ConversionMenu(
                 .fillMaxWidth()
                 .onGloballyPositioned { coordinates ->
                     textFieldSize = coordinates.size.toSize()
-                }.clickable { expanded = !expanded }
+                }
+                .clickable { expanded = !expanded }
             ,
             label = { Text(text = "Conversion type")},
             trailingIcon = {

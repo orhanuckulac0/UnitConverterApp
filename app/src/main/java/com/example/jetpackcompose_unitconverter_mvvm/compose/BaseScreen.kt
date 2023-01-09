@@ -29,9 +29,14 @@ fun BaseScreen(
     val historyList = converterViewModel.resultList.collectAsState(initial = emptyList())  // convert flow into state
 
     Column(modifier = modifier.padding(30.dp)) {
-        TopScreen(list){ typedValueMessage, resultMessage ->
-            converterViewModel.addResult(typedValueMessage, resultMessage) // save to db
-        }
+        TopScreen(
+            list,
+            selectedConversion = converterViewModel.selectedConversion,
+            inputText = converterViewModel.inputText,
+            typedValue = converterViewModel.typedValue,
+            save = { typedValueMessage, resultMessage ->
+                converterViewModel.addResult(typedValueMessage, resultMessage) // save to db
+            })
         Spacer(modifier = modifier.height(20.dp))
         HistoryScreen(
             historyList,

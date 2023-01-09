@@ -1,5 +1,8 @@
 package com.example.jetpackcompose_unitconverter_mvvm
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetpackcompose_unitconverter_mvvm.data.Conversion
@@ -9,6 +12,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ConverterViewModel(private val converterRepository: ConverterRepository): ViewModel() {
+
+    val selectedConversion : MutableState<Conversion?> = mutableStateOf(null)
+    val inputText : MutableState<String> = mutableStateOf("")
+    val typedValue: MutableState<String> = mutableStateOf("0.0")
 
     fun getConversions() = listOf(
         Conversion(id = 1, description = "Pounds to Kilograms", convertFrom = "lbs", convertTo = "kg", multiplyBy = 0.453592),
